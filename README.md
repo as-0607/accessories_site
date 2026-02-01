@@ -15,20 +15,7 @@ The project demonstrates UI design, basic shopping flow pages, and client-side i
 - CSS3
 - JavaScript (Vanilla JS)
 
-## 📂 Project Structure
-accessories_site/
-│
-├── index.html
-├── cart.html
-├── login.html
-├── register.html
-│
-├── css/
-│   └── style.css
-│
-├── JS/
-│   └── script.js
-│
-├── images/
-├── webfonts/
-└── README.md
+## 🌐 Live Demo
+You can view the live version of the project here:  
+👉 https://as-0607.github.io/accessories_site/
+
