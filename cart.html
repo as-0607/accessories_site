@@ -1,53 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Shopping Cart || cart page</title>
-        <link rel="stylesheet" href="css/style.css"/>
-        <link rel="stylesheet" href="css/all.css"/>
-        <link rel="stylesheet" href="css/bootstrap.min.css"/>
-    </head>
-    <body>
-        <header style="margin-bottom: 50px;">
-            <div class="container-fluid" style="background-color: #f6f9fa; padding: 10px 15px 10px 40px; display: flex;">
-                <div class="logo">
-                    <a href="index.html"><img src="images/Logo.png" alt="logo" width="170" height="90"></a>
-                </div>
-                <div class="cartContainer" style="margin-left: auto; margin-top: 2%; display: none;">
-                    <span id="username"></span>
-                    <span style="margin: 0 30px; color: rgb(0, 106, 255);"><i class="fa-solid fa-cart-shopping shoppingcart" style="cursor: pointer;"></i> <span id="counter"></span></span>
-                    <div class="cartsProducts">
-                        <div class="cartAddedProducts"></div>
-                        <hr>
-                        <div class="viewproducts"><a href="cart.html" style="color: black;">View All Products</a></div>
-                    </div>
-                    <button class="headerbtnLogout">Logout</button>
-                </div>
-                <div class="header_content" style="margin-left: auto;">
-                    <button class="headerbtn headerbtn1">Login</button>
-                    <button class="headerbtn headerbtn2">Register</button>
-                </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart | Luna & Loom</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/all.css" />
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+  </head>
+  <body class="cart-page-body">
+    <header class="site-header">
+      <div class="container nav-shell">
+        <a href="index.html" class="brand" aria-label="Luna & Loom home">
+          Luna <span>&amp;</span> Loom
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="index.html#shop">Shop</a>
+          <a href="index.html#categories">Categories</a>
+        </nav>
+
+        <div class="top-bar-actions cart-page-actions">
+          <div class="nav-icons">
+            <button class="icon-button" type="button" id="favoriteTrigger" aria-label="View wishlist">
+              <i class="fa-solid fa-heart"></i>
+              <span class="badge" id="favoriteCount">0</span>
+            </button>
+            <button class="icon-button" type="button" id="cartTrigger" aria-label="Open cart">
+              <i class="fa-solid fa-bag-shopping"></i>
+              <span class="badge" id="cartCount">0</span>
+            </button>
+          </div>
+
+          <div class="auth-controls" id="authControls">
+            <button class="header-btn header-btn-primary" type="button" data-nav="login">Login</button>
+            <button class="header-btn header-btn-secondary" type="button" data-nav="register">Register</button>
+          </div>
+
+          <div class="user-badge hidden" id="userBadge">
+            <span id="usernameLabel">Hello, guest</span>
+            <button class="header-btn header-btn-danger" type="button" id="logoutBtn">Logout</button>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main class="cart-page-main">
+      <div class="container cart-layout">
+        <section class="cart-panel">
+          <div class="cart-header-row">
+            <div>
+              <p class="eyebrow">Shopping bag</p>
+              <h1>Your cart</h1>
             </div>
-        </header>
+            <button id="clearCartBtn" type="button" class="text-button">Clear cart</button>
+          </div>
 
-        <div class="addedproducts row">
-            
+          <div id="cartItems" class="cart-items" aria-live="polite"></div>
+          <div id="cartEmptyState" class="empty-cart hidden">
+            <h2>Your cart is empty</h2>
+            <p>Browse our latest accessories and add your favorites to your bag.</p>
+            <a href="index.html#shop" class="primary-cta">Continue shopping</a>
+          </div>
+        </section>
+
+        <aside class="checkout-panel">
+          <h2>Order summary</h2>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <strong id="subtotalValue">$0.00</strong>
+          </div>
+          <div class="summary-row">
+            <span>Shipping</span>
+            <strong id="shippingValue">$0.00</strong>
+          </div>
+          <div class="summary-row total-row">
+            <span>Total</span>
+            <strong id="totalValue">$0.00</strong>
+          </div>
+          <button type="button" class="checkout-btn" id="checkoutBtn">Proceed to checkout</button>
+          <a href="index.html#shop" class="secondary-link">Continue shopping</a>
+        </aside>
+      </div>
+
+      <section class="wishlist-panel">
+        <div class="container section-header">
+          <div>
+            <p class="eyebrow">Saved for later</p>
+            <h2>Your wishlist</h2>
+          </div>
         </div>
+        <div class="container wishlist-grid" id="wishlistGrid"></div>
+      </section>
+    </main>
 
-        <h2 style="margin-top: 40px; text-align: center;">Total Price: $<span class="price"></span></h2>
-        <hr style="margin-top: 20px; color: #8e8e8e;">
-
-        <h2 class="favItem">Favorite Items</h2>
-        <p class="underline"></p>
-
-        <div class="addedfavproducts row">
-            
-            
+    <aside class="cart-drawer" id="cartDrawer" aria-label="Cart drawer">
+      <div class="drawer-header">
+        <h3>Your cart</h3>
+        <button type="button" class="close-drawer" id="closeCartDrawer" aria-label="Close cart">×</button>
+      </div>
+      <div id="miniCartItems" class="mini-cart-items"></div>
+      <div class="drawer-footer">
+        <div class="drawer-total-row">
+          <span>Subtotal</span>
+          <strong id="drawerSubtotal">$0.00</strong>
         </div>
+        <a href="cart.html" class="drawer-link">View cart</a>
+      </div>
+    </aside>
 
-        <script src="JS/cart.js"></script>
-        <script src="JS/bootstrap.bundle.min.js"></script>
-    </body>
+    <script src="JS/store.js"></script>
+    <script src="JS/cart.js"></script>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
